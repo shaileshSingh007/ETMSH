@@ -16,7 +16,12 @@ function appendAll(){
      'Kalyan Pream Auto-TCS Olympus'
    ]
   
-  let stationMapping = ['FAST','badlapur','Prem Auto']
+  let stationMapping = {
+    'Thane Stn E Kopari':'FAST',
+    'badlapur' : 'Ambernath',
+    'Kalyan Pream Auto':'Prem Auto'
+    
+  }['FAST','badlapur','Prem Auto']
    
    stationArr.forEach((n)=>{
      $('#stationInp').append('<option>'+n+'</option>')
@@ -334,7 +339,7 @@ function addDetails(x) {
    $('#bottomP').append(`<span>Office in Time - ${t1}</span><span> Office out Time - ${t2} </span>`)
    
    //add route
-   let stop11 = stop1.includes('Pream') ? 'Prem Auto' : stop1
+   let stop11 = stationMapping[stop1]
    
    $('#row7').append(`Route : ${stop1} to ${stop2} And Return Via-${stop11}`)
    
