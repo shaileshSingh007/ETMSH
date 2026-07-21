@@ -12,7 +12,8 @@ let initialObj = {
 function appendAll(){
    let stationArr = [
      'Thane Stn E Kopari-TCS Olympus',
-     'badlapur-TCS Olympus'
+     'badlapur-TCS Olympus',
+      'Kalyan Pream Auto'
    ]
    
    stationArr.forEach((n)=>{
@@ -23,7 +24,9 @@ function appendAll(){
      '07:20-17:45',
      '08:20-18:45',
      '09:20-19:45',
-     '10:20-20:45'
+     '10:20-20:45',
+     '07:45-18:45',
+     '06:45-17:45'
    ]
    
    timeAre.forEach((n)=>{
