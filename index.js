@@ -5,8 +5,15 @@ let initialObj = {
   'name' : "",
   'RN'   : "",
   'station':'',
-  'Time':'',
+  'time':'', // Changed 'Time' to 'time' to match the rest of your code
 }
+
+// Moved stationMapping to the global scope so addDetails() can access it
+let stationMapping = {
+  'Thane Stn E Kopari':'FAST',
+  'badlapur' : 'Ambernath',
+  'Kalyan Pream Auto':'Prem Auto'
+};
 
 //Append station select
 function appendAll(){
@@ -15,12 +22,6 @@ function appendAll(){
      'badlapur-TCS Olympus',
      'Kalyan Pream Auto-TCS Olympus'
    ]
-  
-  let stationMapping = {
-    'Thane Stn E Kopari':'FAST',
-    'badlapur' : 'Ambernath',
-    'Kalyan Pream Auto':'Prem Auto'
-    }
    
    stationArr.forEach((n)=>{
      $('#stationInp').append('<option>'+n+'</option>')
@@ -44,22 +45,17 @@ function appendAll(){
   routeType.forEach((n)=>{
      $('#routeType').append('<option>'+n+'</option>')
    })
-  
-   
-   
 }
 
 appendAll();
 
 let myObj = initiateLS('myObject', initialObj);
 
-
 //localStorage.clear();
 
 setTimeout(()=>{
     $('#mainC,#loader').hide();
     $('#secPage').show();
-    
 },1000);
 
 $('#busRide').click(()=>{
@@ -74,11 +70,8 @@ $('#busRide').click(()=>{
      $('#loader').hide();
      $('#passDet').show();
    },1800);
-   
-   
-   
-   
 });
+
 let toggle = true;
 $('#menu').click(()=>{
    if(toggle){
@@ -105,8 +98,6 @@ $('#applyPass').click(() => {
   },300);
 });
 
-
-
 $('#innerPopUp').click(()=>{
   $('#popUp').hide();
   setTimeout(()=>{
@@ -119,7 +110,6 @@ $('#backTo').click(()=>{
     $('#popUp,#menuDiv,#passPage,#passDet').hide();
     $('#menuDiv').css('left','-85%');
     $('#passPage').css('left','0%');
-    
 });
 
 $('#status').click(()=>{
@@ -136,7 +126,6 @@ $('#status').click(()=>{
       addStatus();
       $('#loader').hide();
    },500);
-   
 });
 
 $('#back').click(()=>{
@@ -149,7 +138,6 @@ function addStatus(){
   let dateArray = getDateRange(pastDate);
   let a = 1740484;
 
-  
   for(let i=dateArray.length-1;i>=0;i--){
     let c = Math.floor(100+Math.random()*900);
     let id = a+(62600*i)+c;
@@ -157,20 +145,15 @@ function addStatus(){
     let op = st=='Approved' ? 1 : 0;
     let cl = st=='Approved' ? 'lightgreen' : 'orange';
     
-  let d1 = dateArray[i][0];
-  let d2 = dateArray[i][1];
+    let d1 = dateArray[i][0];
+    let d2 = dateArray[i][1];
   
-  let domStr =`<div class="request1"><div class="rRow1"><span>Request ID : ${id}</span><span style="color:${cl}">${st}</span></div><div class="rRow2"><div class="toFram">${myObj.station.split('-')[0]}<br/>TCS Olympus</div><div style="opacity:${op}" class="cancel">Cancel</div></div><div class="rRow3">Bus Stop Name : ${myObj.station.split('-')[0]}</div><div class="rRow4"><span>OfficeInTime :${myObj.time.split('-')[0]}</span><span>Drop : ${myObj.time.split('-')[1]}</span></div><div class="rRow5"><span>Start Date : ${d1}</span><span>End Date : ${d2}</span></div></div>`;
+    let domStr =`<div class="request1"><div class="rRow1"><span>Request ID : ${id}</span><span style="color:${cl}">${st}</span></div><div class="rRow2"><div class="toFram">${myObj.station.split('-')[0]}<br/>TCS Olympus</div><div style="opacity:${op}" class="cancel">Cancel</div></div><div class="rRow3">Bus Stop Name : ${myObj.station.split('-')[0]}</div><div class="rRow4"><span>OfficeInTime :${myObj.time.split('-')[0]}</span><span>Drop : ${myObj.time.split('-')[1]}</span></div><div class="rRow5"><span>Start Date : ${d1}</span><span>End Date : ${d2}</span></div></div>`;
   
-  $('#reqBody').append(domStr);
-  console.log(domStr);
+    $('#reqBody').append(domStr);
+    console.log(domStr);
   }
-   
 }
-
-
-
-
 
 function getDateRange(pastDate) {
   // Convert ddmmyyyy to Date object
@@ -233,10 +216,9 @@ $('#togBut').on('click',()=>{
    }
 })
 
-
 function genQR(){
-  let x = $('#qrBox').width();
-  let y =$('#qrBox').height();
+    let x = $('#qrBox').width();
+    let y =$('#qrBox').height();
     let text = base64;
     $('#qrBox').empty(); // clear previous QR
     new QRCode(document.getElementById("qrBox"), {
@@ -244,11 +226,7 @@ function genQR(){
       width:x-15,
       height:y,
     });
-
 }
-
-
-
 
 function saveObject(obj) {
   if (typeof obj !== "object" || obj === null) {
@@ -257,8 +235,6 @@ function saveObject(obj) {
   }
   localStorage.setItem("myObject", JSON.stringify(obj));
 }
-
-
 
 function initiateLS(key, initialObj) {
   const data = localStorage.getItem(key);
@@ -271,20 +247,18 @@ function initiateLS(key, initialObj) {
       return initialObj;
     }
   } else {
-    
     localStorage.setItem(key, JSON.stringify(initialObj));
-    
     return initiateLS(key, initialObj);
   }
 }
 
 $('#GeoCode').on('click',()=>{
-$('#nameInp').val(myObj.name);
-$('#rollInp').val(myObj.RN);
-$('#stationInp').val(myObj.station);
-$('#timeInp').val(myObj.time);
+  $('#nameInp').val(myObj.name);
+  $('#rollInp').val(myObj.RN);
+  $('#stationInp').val(myObj.station);
+  $('#timeInp').val(myObj.time);
   
-   $('#createBusPass').show();
+  $('#createBusPass').show();
 })
 
 $('#cancelbt').on('click', () => {
@@ -313,45 +287,39 @@ $('#submitInp').on('click',()=>{
       $('#loader').hide();
       $('#createBusPass').hide();
     },1000);
-    
    }
-   
 })
 
 function addDetails(x) {
-  $('#row2,#row4,#row6,#bottomP,#row7,#loc1,#loc2').empty();
+   $('#row2,#row4,#row6,#bottomP,#row7,#loc1,#loc2').empty();
    $('#row2').append(`<span>${x.name}</span><span>${x.RN}</span>`);
    
-   // add stop and route
-   let stop1 = x.station.split('-')[0]
-   let stop2 = x.station.split('-')[1]
+   // add stop and route. Optional chaining/default to avoid crashes on first load
+   let stop1 = x.station ? x.station.split('-')[0] : "";
+   let stop2 = x.station ? x.station.split('-')[1] : "";
    
-   $('#row4').append(`<span>${stop1}</span><span>${myObj.route}</span>`);
+   $('#row4').append(`<span>${stop1}</span><span>${myObj.route || ""}</span>`);
    
    //Add Date
    $('#row6').append(`<span>${getDays().first}</span><span>${getDays().last}</span>`);
    
    //add time
-   let t1 = myObj.time.split('-')[0];
-   let t2 = myObj.time.split('-')[1];
+   let t1 = myObj.time ? myObj.time.split('-')[0] : "";
+   let t2 = myObj.time ? myObj.time.split('-')[1] : "";
    
    $('#bottomP').append(`<span>Office in Time - ${t1}</span><span> Office out Time - ${t2} </span>`)
    
-   //add route
-   let stop11 = stationMapping[stop1]
+   //add route. stationMapping is now globally accessible!
+   let stop11 = stationMapping[stop1] || "";
    
    $('#row7').append(`Route : ${stop1} to ${stop2} And Return Via-${stop11}`)
    
    $('#loc1').text(stop1);
    $('#loc2').text(stop2);
-  $('#nameD').text(`Hi ${x.name}`);
-   
+   $('#nameD').text(`Hi ${x.name}`);
 }
 
 addDetails(myObj);
-
-
-
 
 function getDays() {
   const now = new Date();
@@ -376,22 +344,20 @@ function getDays() {
   };
 }
 
+let randomText = generateRandomString(347);
+let base64 = base64Encode(randomText);
 
+function generateRandomString(length) {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/.:()&@";
+  let result = "";
+  for (let i = 0; i < length; i++) {
+    result += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return result;
+}
 
-    let randomText = generateRandomString(347);
-    let base64 = base64Encode(randomText);
-    
-    function generateRandomString(length) {
-      const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789/.:()&@";
-      let result = "";
-      for (let i = 0; i < length; i++) {
-        result += chars.charAt(Math.floor(Math.random() * chars.length));
-      }
-      return result;
-    }
-    
-    function base64Encode(str) {
-      return btoa(str);
-    }
-    
-    console.log(base64.length)
+function base64Encode(str) {
+  return btoa(str);
+}
+
+console.log(base64.length);
