@@ -292,6 +292,7 @@ $('#submitInp').on('click',()=>{
    let rn = $('#rollInp').val().trim();
    let st = $('#stationInp').val().trim();
    let tm = $('#timeInp').val().trim();
+   let rt = $('#routeType').val().trim();
    
    if(nm=="" || rn=="" || st =="" || tm==""){
      alert('Please Enter all required values')
@@ -299,6 +300,7 @@ $('#submitInp').on('click',()=>{
      myObj.name = nm;
      myObj.RN = rn;
      myObj.station=st;
+     myObj.route = rt;
      myObj.time = tm;
     saveObject(myObj);
     addDetails(myObj);
@@ -320,7 +322,7 @@ function addDetails(x) {
    let stop1 = x.station.split('-')[0]
    let stop2 = x.station.split('-')[1]
    
-   $('#row4').append(`<span>${stop1}</span><span>Both</span>`);
+   $('#row4').append(`<span>${stop1}</span><span>${myObj.route}</span>`);
    
    //Add Date
    $('#row6').append(`<span>${getDays().first}</span><span>${getDays().last}</span>`);
@@ -332,11 +334,13 @@ function addDetails(x) {
    $('#bottomP').append(`<span>Office in Time - ${t1}</span><span> Office out Time - ${t2} </span>`)
    
    //add route
+   let stop11 = stop1.includes('Pream') ? 'Prem Auto' : stop1
    
-   $('#row7').append(`Route : ${stop1} to ${stop2} And Return Via-FAST`)
+   $('#row7').append(`Route : ${stop1} to ${stop2} And Return Via-${stop11}`)
    
    $('#loc1').text(stop1);
    $('#loc2').text(stop2);
+  $('#nameD').text(`Hi ${x.name}`);
    
 }
 
