@@ -13,7 +13,7 @@ function appendAll(){
    let stationArr = [
      'Thane Stn E Kopari-TCS Olympus',
      'badlapur-TCS Olympus',
-      'Kalyan Pream Auto'
+      'Kalyan Pream Auto-TCS Olympus'
    ]
    
    stationArr.forEach((n)=>{
