@@ -20,8 +20,7 @@ function appendAll(){
     'Thane Stn E Kopari':'FAST',
     'badlapur' : 'Ambernath',
     'Kalyan Pream Auto':'Prem Auto'
-    
-  }['FAST','badlapur','Prem Auto']
+    }
    
    stationArr.forEach((n)=>{
      $('#stationInp').append('<option>'+n+'</option>')
