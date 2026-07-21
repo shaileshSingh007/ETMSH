@@ -13,12 +13,16 @@ function appendAll(){
    let stationArr = [
      'Thane Stn E Kopari-TCS Olympus',
      'badlapur-TCS Olympus',
-      'Kalyan Pream Auto-TCS Olympus'
+     'Kalyan Pream Auto-TCS Olympus'
    ]
+  
+  let stationMapping = ['FAST','badlapur','Prem Auto']
    
    stationArr.forEach((n)=>{
      $('#stationInp').append('<option>'+n+'</option>')
    });
+  
+   let routeType = ['Both','B']
    
    let timeAre = [
      '07:20-17:45',
@@ -32,6 +36,11 @@ function appendAll(){
    timeAre.forEach((n)=>{
      $('#timeInp').append('<option>'+n+'</option>')
    })
+  
+  routeType.forEach((n)=>{
+     $('#routeType').append('<option>'+n+'</option>')
+   })
+  
    
    
 }
